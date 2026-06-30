@@ -41,6 +41,8 @@ export default function AboutUs() {
                   <Image
                     src={founder.image}
                     alt={founder.name}
+                    width={192}
+                    height={256}
                     className="w-full h-full object-cover block border-none outline-none p-0 m-0 transition duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -77,16 +79,22 @@ export default function AboutUs() {
             />
             <Image
             src="/images/alagappa.png"
+            width={220}
+            height={200}
             className="h-[200px] sm:h-[220px] w-auto object-contain hover:scale-110 transition duration-300"
             alt="Alagappa logo"
             />
             <Image
             src="/images/mkv.png"
+            width={180}
+            height={150}
             className="h-[150px] sm:h-[180px] w-auto object-contain hover:scale-110 transition duration-300"
             alt="MKV logo"
             />
             <Image
             src="/images/gov.png"
+            width={85}
+            height={100}
             className="h-[100px] sm:h-[85px] w-auto object-contain hover:scale-110 transition duration-300"
             alt="Gov logo"
             />
