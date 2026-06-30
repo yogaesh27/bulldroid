@@ -14,6 +14,8 @@ const geistMono = JetBrains_Mono({
 
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bulldroid.in"),
+
   title: "Bulldroid | AI, Robotics & Automation",
   description:
     "Bulldroid develops AI, robotics, automation, IoT, and software solutions.",
@@ -26,7 +28,7 @@ export const metadata: Metadata = {
     siteName: "Bulldroid",
     images: [
       {
-        url: "/images/og-image.jpg", // Place this image in your public/images folder
+        url: "/images/logo.png",
         width: 1200,
         height: 630,
         alt: "Bulldroid",
@@ -35,7 +37,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-}
+};
 
 export default function RootLayout({
   children,
