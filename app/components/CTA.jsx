@@ -205,7 +205,7 @@ export function CTA() {
 
             <Button
               onClick={handleSubmit}
-              className="bg-red-600 hover:bg-red-700 w-full transition-all duration-500 hover:scale-[1.05]"
+              className="bg-red-600 hover:bg-red-700 text-white w-full transition-all duration-500 hover:scale-[1.05]"
             >
               Send Message
             </Button>

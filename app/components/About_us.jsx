@@ -70,36 +70,50 @@ export default function AboutUs() {
 
           {/* LOGOS (Fixed standard heights, single row setup) */}
           <div className="flex flex-row flex-nowrap justify-center items-center gap-8 sm:gap-14 mb-10 overflow-hidden py-2">
-            <Image
-            src="/images/manage.png"
-            alt="MANAGE logo"
-            width={160}
-            height={130}
-            className="h-[130px] sm:h-[160px] w-auto object-contain hover:scale-110 transition duration-300"
-            />
-            <Image
-            src="/images/alagappa.png"
-            width={220}
-            height={200}
-            className="h-[200px] sm:h-[220px] w-auto object-contain hover:scale-110 transition duration-300"
-            alt="Alagappa logo"
-            />
-            <Image
-            src="/images/mkv.png"
-            width={180}
-            height={150}
-            className="h-[150px] sm:h-[180px] w-auto object-contain hover:scale-110 transition duration-300"
-            alt="MKV logo"
-            />
-            <Image
-            src="/images/gov.png"
-            width={85}
-            height={100}
-            className="h-[100px] sm:h-[85px] w-auto object-contain hover:scale-110 transition duration-300"
-            alt="Gov logo"
-            />
-            </div>
+  {/* MANAGE */}
+  <div className="relative w-[160px] h-[130px] sm:w-[197px] sm:h-[160px]">
+    <Image
+      src="/images/manage.png"
+      alt="MANAGE logo"
+      fill
+      sizes="(max-width: 640px) 160px, 197px"
+      className="object-contain hover:scale-110 transition duration-300"
+    />
+  </div>
 
+  {/* ALAGAPPA */}
+  <div className="relative w-[220px] h-[200px] sm:w-[242px] sm:h-[220px]">
+    <Image
+      src="/images/alagappa.png"
+      alt="Alagappa logo"
+      fill
+      sizes="(max-width: 640px) 220px, 242px"
+      className="object-contain hover:scale-110 transition duration-300"
+    />
+  </div>
+
+  {/* MKV */}
+  <div className="relative w-[180px] h-[150px] sm:w-[216px] sm:h-[180px]">
+    <Image
+      src="/images/mkv.png"
+      alt="MKV logo"
+      fill
+      sizes="(max-width: 640px) 180px, 216px"
+      className="object-contain hover:scale-110 transition duration-300"
+    />
+  </div>
+
+  {/* GOV */}
+  <div className="relative w-[350px] h-[350px] sm:w-[350px] sm:h-[350px]">
+  <Image
+    src="/images/gov.png"
+    alt="Gov logo"
+    fill
+    sizes="220px"
+    className="object-contain hover:scale-110 transition duration-300"
+  />
+</div>
+</div>
           {/* DESCRIPTION */}
           <p className="text-gray-600 text-justify max-w-4xl mx-auto leading-relaxed mb-12">
             Our startup is proudly incubated under{" "}

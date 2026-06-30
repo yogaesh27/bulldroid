@@ -6,9 +6,8 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Bulldroid, our mission, vision, and innovative technology solutions.",
+    "Explore Bulldroid's AI, robotics, automation, IoT, and software development services.",
 };
-
 export default function Aboutus() {
   return (
     <>

@@ -1,11 +1,12 @@
 "use client";
+
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBriefcase } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Mail, User, ArrowLeft } from "lucide-react";
+import { Mail, User, Phone, ArrowLeft } from "lucide-react";
 import internship from "../../public/images/internship.png";
 import Image from "next/image";
 
@@ -20,6 +21,7 @@ export default function Application() {
   const [joinForm, setJoinForm] = useState({
     name: "",
     email: "",
+    phone: "",
     role: "",
     message: "",
   });
@@ -29,58 +31,60 @@ export default function Application() {
   };
 
   const handleJoinSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  let newErrors = {};
+    let newErrors = {};
 
-  if (!joinForm.name) newErrors.name = "Name required";
-  if (!joinForm.email) newErrors.email = "Email required";
-  if (!joinForm.role) newErrors.role = "Please select a role";
-  if (!joinForm.message) newErrors.message = "Tell us about yourself";
+    if (!joinForm.name) newErrors.name = "Name required";
+    if (!joinForm.email) newErrors.email = "Email required";
+    if (!joinForm.phone) newErrors.phone = "Phone number required";
+    if (!joinForm.role) newErrors.role = "Please select a role";
+    if (!joinForm.message) newErrors.message = "Tell us about yourself";
 
-  if (joinForm.role === "Intern" && !internDomain) {
-    newErrors.internDomain = "Please enter your internship domain";
-  }
+    if (joinForm.role === "Intern" && !internDomain) {
+      newErrors.internDomain = "Please enter your internship domain";
+    }
 
-  setJoinErrors(newErrors);
+    setJoinErrors(newErrors);
 
-  if (Object.keys(newErrors).length > 0) return;
+    if (Object.keys(newErrors).length > 0) return;
 
-  try {
-    const res = await fetch("/api/application", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...joinForm,
-        internDomain,
-      }),
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-      setJoinSuccess(true);
-      setTimeout(() => setJoinSuccess(false), 3000);
-
-      setJoinForm({
-        name: "",
-        email: "",
-        role: "",
-        message: "",
+    try {
+      const res = await fetch("/api/application", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...joinForm,
+          internDomain,
+        }),
       });
 
-      setInternDomain("");
-      setJoinErrors({});
-    } else {
-      alert("Failed to submit application.");
+      const data = await res.json();
+
+      if (data.success) {
+        setJoinSuccess(true);
+        setTimeout(() => setJoinSuccess(false), 3000);
+
+        setJoinForm({
+          name: "",
+          email: "",
+          phone: "",
+          role: "",
+          message: "",
+        });
+
+        setInternDomain("");
+        setJoinErrors({});
+      } else {
+        alert("Failed to submit application.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Server error. Please try again.");
     }
-  } catch (err) {
-    console.error(err);
-    alert("Server error. Please try again.");
-  }
-};
+  };
 
   return (
     <section className="py-28 bg-gray-50">
@@ -118,6 +122,7 @@ export default function Application() {
               <Mail size={18} />
               <Input
                 name="email"
+                type="email"
                 placeholder="Email"
                 value={joinForm.email}
                 onChange={handleJoinChange}
@@ -128,22 +133,36 @@ export default function Application() {
             )}
           </div>
 
-          {/* ROLE FIELD (CHANGED FROM INPUT TO SELECT DROPDOWN) */}
+          {/* PHONE */}
+          <div>
+            <div className="flex items-center gap-3 transition-all duration-300 hover:scale-[1.02]">
+              <Phone size={18} />
+              <Input
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                value={joinForm.phone}
+                onChange={handleJoinChange}
+              />
+            </div>
+            {joinErrors.phone && (
+              <p className="text-red-500 text-sm">{joinErrors.phone}</p>
+            )}
+          </div>
+
+          {/* ROLE */}
           <div>
             <div className="flex items-center gap-3 transition-all duration-300 hover:scale-[1.02]">
               <FontAwesomeIcon icon={faBriefcase} />
 
-              {/* CHANGED: this used to be <Input ... /> */}
               <select
                 name="role"
                 value={joinForm.role}
                 onChange={handleJoinChange}
                 className="w-full border rounded-lg p-2 bg-white"
               >
-                {/* NEW: dropdown options */}
                 <option value="">Select Role</option>
                 <option value="Robotics Engineer">Robotics Engineer</option>
-                {/* <option value="AI Developer"></option> */}
                 <option value="Mechanical Designer">Mechanical Designer</option>
                 <option value="Embedded Systems Engineer">
                   Product Development Engineer
@@ -156,33 +175,32 @@ export default function Application() {
               <p className="text-red-500 text-sm">{joinErrors.role}</p>
             )}
           </div>
+
           {/* SHOW ONLY IF INTERN SELECTED */}
-{joinForm.role === "Intern" && (
-  <div className="animate-fadeIn">
-    <div className="flex items-center gap-3 mt-2 transition-all duration-300 hover:scale-[1.02]">
+          {joinForm.role === "Intern" && (
+            <div className="animate-fadeIn">
+              <div className="flex items-center gap-3 mt-2 transition-all duration-300 hover:scale-[1.02]">
+                <Image
+                  src={internship}
+                  alt="domain"
+                  className="w-5 h-5 object-contain"
+                />
 
-      {/* FIXED IMAGE */}
-      <Image
-        src={internship} 
-        alt="domain" 
-        className="w-5 h-5 object-contain"
-      />
+                <Input
+                  name="internDomain"
+                  placeholder="Enter your preferred domain (e.g. AI, Robotics, Web Dev)"
+                  value={internDomain}
+                  onChange={(e) => setInternDomain(e.target.value)}
+                />
+              </div>
 
-      <Input
-        name="internDomain"
-        placeholder="Enter your preferred domain (e.g. AI, Robotics, Web Dev)"
-        value={internDomain}
-        onChange={(e) => setInternDomain(e.target.value)}
-      />
-    </div>
-
-    {joinErrors.internDomain && (
-      <p className="text-red-500 text-sm">
-        {joinErrors.internDomain}
-      </p>
-    )}
-  </div>
-)}
+              {joinErrors.internDomain && (
+                <p className="text-red-500 text-sm">
+                  {joinErrors.internDomain}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* MESSAGE */}
           <div>
@@ -201,7 +219,7 @@ export default function Application() {
           {/* SUBMIT BUTTON */}
           <Button
             onClick={handleJoinSubmit}
-            className="bg-red-600 hover:bg-red-700 w-full transition-all duration-500 hover:scale-[1.05]"
+            className="bg-red-600 hover:bg-red-700 text-white w-full transition-all duration-500 hover:scale-[1.05]"
           >
             Apply Now
           </Button>

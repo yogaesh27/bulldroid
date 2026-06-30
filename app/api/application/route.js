@@ -3,8 +3,14 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    const { name, email, role, internDomain, message } =
-      await req.json();
+    const {
+      name,
+      email,
+      phone,
+      role,
+      internDomain,
+      message,
+    } = await req.json();
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -26,9 +32,15 @@ export async function POST(req) {
 
         <p><strong>Email:</strong> ${email}</p>
 
+        <p><strong>Phone:</strong> ${phone}</p>
+
         <p><strong>Role:</strong> ${role}</p>
 
-        <p><strong>Intern Domain:</strong> ${internDomain || "N/A"}</p>
+        ${
+          role === "Intern"
+            ? `<p><strong>Intern Domain:</strong> ${internDomain}</p>`
+            : ""
+        }
 
         <p><strong>About:</strong></p>
 
