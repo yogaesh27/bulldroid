@@ -71,7 +71,7 @@ export default function AboutUs() {
           <div className="flex flex-row flex-nowrap justify-center items-center gap-8 sm:gap-14 mb-10 overflow-hidden py-2">
   <img
     src="/images/manage.png"
-    className="h-[150px] sm:h-[180px] w-auto object-contain hover:scale-110 transition duration-300"
+    className="h-[130px] sm:h-[160px] w-auto object-contain hover:scale-110 transition duration-300"
     alt="MANAGE logo"
   />
   <img
