@@ -3,8 +3,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    const { name, email, role, internDomain, message } =
-      await req.json();
+    const { name, email, phone, message } = await req.json();
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -15,22 +14,20 @@ export async function POST(req) {
     });
 
     await transporter.sendMail({
-      from: `"Bulldroid" <${process.env.EMAIL_USER}>`,
+      from: `"Bulldroid Website" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
       replyTo: email,
-      subject: "New Job Application",
+      subject: "New Contact Form Submission",
       html: `
-        <h2>New Application</h2>
+        <h2>New Contact Request</h2>
 
         <p><strong>Name:</strong> ${name}</p>
 
         <p><strong>Email:</strong> ${email}</p>
 
-        <p><strong>Role:</strong> ${role}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
 
-        <p><strong>Intern Domain:</strong> ${internDomain || "N/A"}</p>
-
-        <p><strong>About:</strong></p>
+        <p><strong>Message:</strong></p>
 
         <p>${message}</p>
       `,
