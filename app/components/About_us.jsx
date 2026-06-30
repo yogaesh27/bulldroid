@@ -1,10 +1,9 @@
 "use client"; // REQUIRED: Allows client-side routing in Next.js
-
-import * as React from "react";
-import { Users, Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation"; 
 import { founders } from "../../src/constants/founders"; // Verify this path matches your directory setup
 import ScrollToTop from "./ui/ScrollToTop";
+import Image from "next/image";
 
 export default function AboutUs() {
   const router = useRouter(); 
@@ -39,7 +38,7 @@ export default function AboutUs() {
                 
                 {/* 🔒 FIXED SIZE CONTAINER (Removes pink border, locks identical dimensions) */}
                 <div className="w-48 h-64 overflow-hidden rounded-xl mb-6 bg-gray-100 flex items-center justify-center">
-                  <img
+                  <Image
                     src={founder.image}
                     alt={founder.name}
                     className="w-full h-full object-cover block border-none outline-none p-0 m-0 transition duration-500 group-hover:scale-105"
@@ -69,27 +68,29 @@ export default function AboutUs() {
 
           {/* LOGOS (Fixed standard heights, single row setup) */}
           <div className="flex flex-row flex-nowrap justify-center items-center gap-8 sm:gap-14 mb-10 overflow-hidden py-2">
-  <img
-    src="/images/manage.png"
-    className="h-[130px] sm:h-[160px] w-auto object-contain hover:scale-110 transition duration-300"
-    alt="MANAGE logo"
-  />
-  <img
-    src="/images/alagappa.png"
-    className="h-[200px] sm:h-[220px] w-auto object-contain hover:scale-110 transition duration-300"
-    alt="Alagappa logo"
-  />
-  <img
-    src="/images/mkv.png"
-    className="h-[150px] sm:h-[180px] w-auto object-contain hover:scale-110 transition duration-300"
-    alt="MKV logo"
-  />
-  <img
-    src="/images/gov.png"
-    className="h-[100px] sm:h-[85px] w-auto object-contain hover:scale-110 transition duration-300"
-    alt="Gov logo"
-  />
-</div>
+            <Image
+            src="/images/manage.png"
+            alt="MANAGE logo"
+            width={160}
+            height={130}
+            className="h-[130px] sm:h-[160px] w-auto object-contain hover:scale-110 transition duration-300"
+            />
+            <Image
+            src="/images/alagappa.png"
+            className="h-[200px] sm:h-[220px] w-auto object-contain hover:scale-110 transition duration-300"
+            alt="Alagappa logo"
+            />
+            <Image
+            src="/images/mkv.png"
+            className="h-[150px] sm:h-[180px] w-auto object-contain hover:scale-110 transition duration-300"
+            alt="MKV logo"
+            />
+            <Image
+            src="/images/gov.png"
+            className="h-[100px] sm:h-[85px] w-auto object-contain hover:scale-110 transition duration-300"
+            alt="Gov logo"
+            />
+            </div>
 
           {/* DESCRIPTION */}
           <p className="text-gray-600 text-justify max-w-4xl mx-auto leading-relaxed mb-12">
@@ -128,7 +129,7 @@ export default function AboutUs() {
                   after:transition-transform after:duration-300 
                   hover:after:scale-x-100 after:origin-left"
             >
-              RKVY–RAFTAAR
+              RKVY-RAFTAAR
             </a>{" "}
             program, recognizing our work as innovative, scalable, and
             impactful. We are also recognized as a <span className="font-semibold text-red-700">DPIIT-certified startup</span> under the Startup India initiative.
@@ -216,7 +217,7 @@ export default function AboutUs() {
                     after:transition-transform after:duration-300 
                     hover:after:scale-x-100 after:origin-left"
                   >
-                    RKVY–RAFTAAR
+                    RKVY-RAFTAAR
                   </a>
                 </p>
               </div>

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Mail, User, ArrowLeft } from "lucide-react";
 import internship from "../../public/images/internship.png";
+import Image from "next/image";
 
 export default function Application() {
   const [internDomain, setInternDomain] = useState("");
@@ -161,7 +162,7 @@ export default function Application() {
     <div className="flex items-center gap-3 mt-2 transition-all duration-300 hover:scale-[1.02]">
 
       {/* FIXED IMAGE */}
-      <img 
+      <Image
         src={internship} 
         alt="domain" 
         className="w-5 h-5 object-contain"
