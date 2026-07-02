@@ -50,7 +50,7 @@ export default function Hero() {
             <Button
               size="lg"
               className="bg-red-600 hover:bg-red-700 text-white text-sm sm:text-base md:text-lg px-5 py-3 sm:px-6 sm:py-4 transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg flex items-center justify-center"
-              onClick={() => router.push("/services")}
+              onClick={() => router.push("/products")}
             >
               This Isn’t A Machine. Tap To See Why
               <ArrowRight className="ml-2 h-5 w-5 sm:h-6 sm:w-6 transition-transform duration-300 group-hover:translate-x-1" />
